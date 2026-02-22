@@ -1,10 +1,7 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Entities.DTOs;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -16,20 +13,20 @@ namespace DataAccess.Concrete.InMemory
             _products = new List<Product>
             {
                 new Product{ProductId=1,CategoryId=1,
-                    ProductName="Bardak",UnitePrice=15,
-                    UnitINSTock=15},
+                    ProductName="Bardak",UnitPrice=15,
+                    UnitsInSTock=15},
                 new Product{ProductId=2,CategoryId=1,
-                    ProductName="Kamera",UnitePrice=500,
-                    UnitINSTock=3},
+                    ProductName="Kamera",UnitPrice=500,
+                    UnitsInSTock=3},
                 new Product{ProductId=3,CategoryId=2,
-                    ProductName="Telefon",UnitePrice=1500,
-                    UnitINSTock=2},
+                    ProductName="Telefon",UnitPrice=1500,
+                    UnitsInSTock=2},
                 new Product{ProductId=4,CategoryId=2,
-                    ProductName="Klavye",UnitePrice=150,
-                    UnitINSTock=65},
+                    ProductName="Klavye",UnitPrice=150,
+                    UnitsInSTock=65},
                 new Product{ProductId=5,CategoryId=2,
-                    ProductName="Fare",UnitePrice=85,
-                    UnitINSTock=1}
+                    ProductName="Fare",UnitPrice=85,
+                    UnitsInSTock=1}
             };
         }
 
@@ -48,14 +45,29 @@ namespace DataAccess.Concrete.InMemory
             
         }
 
+        public Product Get(Expression<Func<Product, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetAll()
         {
             return _products;
         }
 
+        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetAllByCategory(int categoryId)
         {
             return _products.Where(p=>p.CategoryId == categoryId).ToList();
+        }
+
+        public List<ProductDetailDto> GetProductDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Product product)
@@ -66,8 +78,8 @@ namespace DataAccess.Concrete.InMemory
 
             productUpdate.ProductName = product.ProductName;
             productUpdate.CategoryId = product.CategoryId;
-            productUpdate.UnitePrice = product.UnitePrice;
-            productUpdate.UnitINSTock = product.UnitINSTock;
+            productUpdate.UnitPrice = product.UnitPrice;
+            productUpdate.UnitsInSTock = product.UnitsInSTock;
         }
     }
 }

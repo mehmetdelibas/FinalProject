@@ -1,10 +1,36 @@
 ﻿using Business.Concrete;
-using DataAccess.Concrete.InMemory;
+using DataAccess.Concrete.EntityFreamwork;
 
-//Console.WriteLine("Hello, World!");
 
-ProductManager productManager = new ProductManager(new InMemoryProductDal());
-foreach (var product in productManager.GetAll())
+
+ProductTest();
+//CatagoryTest();
+//OrderTest();
+
+static void ProductTest()
 {
-    Console.WriteLine(product.ProductName);
+    ProductManager productManager = new ProductManager(new EfProductDal());
+
+    foreach (var product in productManager.GetProductDetails())
+    {
+        Console.WriteLine(product.ProductName + " - - " + product.CategoryName);
+    }
+}
+
+static void CatagoryTest()
+{
+    CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+    foreach (var category in categoryManager.GetAll())
+    {
+        Console.WriteLine(category.CategoryName);
+    }
+}
+
+static void OrderTest()
+{
+    OrderManager orderManager = new OrderManager(new EfOrderDal());
+    foreach (var order in orderManager.GetAll())
+    {
+        Console.WriteLine(order.ShipCity);
+    }
 }

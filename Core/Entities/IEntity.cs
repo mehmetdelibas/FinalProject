@@ -1,4 +1,4 @@
-﻿namespace Entities.Abstract
+﻿namespace Core.Entites
 {
     //IEntity implament eden class bir veritabanı tablosudur
     public interface IEntity
