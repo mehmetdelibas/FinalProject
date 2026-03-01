@@ -1,9 +1,18 @@
+using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFreamwork;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+//IoC
+
+builder.Services.AddSingleton<IProductService,ProductManager>();
+builder.Services.AddSingleton<IProductDal,EfProductDal>();
+//IoC
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
