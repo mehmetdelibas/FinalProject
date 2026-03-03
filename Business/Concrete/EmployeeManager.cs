@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFreamwork;
@@ -14,6 +16,15 @@ namespace Business.Concrete
         public EmployeeManager(IEmployeeDal employeeDal)
         {
             _employeeDal = employeeDal;
+        }
+        public IResult Add(Employee employee)
+        {
+            // iş kodları
+
+
+            ValidationTool.Validate(new EmployeeValidator(), employee);
+            _employeeDal.Add(employee);
+            return new SuccessResult(Messages.EmployeeAdded);
         }
 
         public IDataResult<List<Employee>> GetAll()

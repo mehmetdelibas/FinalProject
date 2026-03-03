@@ -7,5 +7,6 @@ namespace Business.Abstract
     {
         IDataResult<List<Employee>> GetAll();
         IDataResult<Employee> GetById(int employeeId);
+        IResult Add(Employee employee);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,15 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
 
+        }
+        [HttpPost("Add")]
+        public IActionResult Post(Employee employee)
+        {
+            var result = _employeeService.Add(employee);
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
     }
 }
