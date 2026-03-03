@@ -18,5 +18,6 @@ namespace Business.ValidationRules.FluentValidation
             //asagidaki kodda must koullininca kendi validationlarini yazabilirsin
             //RuleFor(p => p.ProductName).Must(StartWithA);
         }
+
     }
 }
