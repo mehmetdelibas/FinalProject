@@ -4,7 +4,6 @@ using Business.ValidationRules.FluentValidation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFreamwork;
 using Entities.Concrete;
 
 namespace Business.Concrete
