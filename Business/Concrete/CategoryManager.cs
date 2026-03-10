@@ -1,4 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -10,18 +14,30 @@ namespace Business.Concrete
 
         public CategoryManager(ICategoryDal categoryDal)
         {
-            _categoryDal = categoryDal; 
+            _categoryDal = categoryDal;
+        }
+        public IResult Add(Category category)
+        {
+            // iş kodları
+
+
+            ValidationTool.Validate(new CategoryValidator(), category);
+            _categoryDal.Add(category);
+            return new SuccessResult(Messages.CategoryAdded);
         }
 
-        public List<Category> GetAll()
+        public IDataResult<List<Category>> GetAll()
         {
+            if (DateTime.Now.Hour == 5)
+                return new ErrorDataResult<List<Category>>(Messages.MaintenanceTime);
+
             //iş kodları, Yetki kontorlü
-            return _categoryDal.GetAll();
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.CategoryListed);
         }
 
-        public Category GetById(int categoryiId)
+        public IDataResult<Category> GetById(int categoryId)
         {
-            return _categoryDal.Get(p=>p.CategoryId == categoryiId);
+            return new SuccessDataResult<Category>(_categoryDal.Get(p => p.CategoryId == categoryId));
         }
     }
 }

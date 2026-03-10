@@ -24,7 +24,7 @@ static void ProductTest()
     }
 }
 
-static void CatagoryTest()
+/*static void CatagoryTest()
 {
     CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
     foreach (var category in categoryManager.GetAll())
@@ -40,4 +40,4 @@ static void OrderTest()
     {
         Console.WriteLine(order.ShipCity);
     }
-}
+}*/

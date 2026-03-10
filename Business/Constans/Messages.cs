@@ -15,6 +15,9 @@
         public static string EmployeeAdded = "Çalışan Eklendi";
         public static string EmployeeNameInvalid = "Çalışan İsmi Geçersiz";
         public static string EmployeeListed = "Çalışanlar Listelendi";
-
+        //Category hata mesajları
+        public static string CategoryAdded = "Kategori Eklendi";
+        public static string CategoryNameInvalid = "Kategori İsmi Geçersiz";
+        public static string CategoryListed = "Kategori Listelendi";
     }
 }

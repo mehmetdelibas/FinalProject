@@ -16,6 +16,9 @@ namespace Business.DependencyResolvers.Autofac
             //Employee
             builder.RegisterType<EmployeeManager>().As<IEmployeeService>().SingleInstance();
             builder.RegisterType<EfEmployeeDal>().As<IEmployeeDal>().SingleInstance();
+            //Category
+            builder.RegisterType<CategoryManager>().As<ICategoryServices>().SingleInstance();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
         }
     }
 }
