@@ -6,11 +6,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class EmployeesController : ControllerBase
     {
         IEmployeeService _employeeService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeesController(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
         }
@@ -25,6 +25,18 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
+
+        [HttpGet("GetById,{id:int}")]
+        public IActionResult GetById(int id)
+        {
+            var result = _employeeService.GetById(id);
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
+
+        }
+
         [HttpPost("Add")]
         public IActionResult Post(Employee employee)
         {
