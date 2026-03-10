@@ -32,7 +32,7 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<Employee>>(Messages.MaintenanceTime);
 
             //iş kodları, Yetki kontorlü
-            return new SuccessDataResult<List<Employee>>(_employeeDal.GetAll(), Messages.EmployeeListed);
+            return new SuccessDataResult<List<Employee>>(_employeeDal.GetAll().OrderBy(p => p.EmployeeId).ToList(), Messages.EmployeeListed);
         }
 
         public IDataResult<Employee> GetById(int employeeId)

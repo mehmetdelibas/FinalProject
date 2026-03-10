@@ -34,7 +34,7 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
 
             //iş kodları, Yetki kontorlü
-            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), Messages.ProductListed);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll().OrderBy(p => p.ProductId).ToList(), Messages.ProductListed);
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
