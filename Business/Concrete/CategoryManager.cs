@@ -32,7 +32,7 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<Category>>(Messages.MaintenanceTime);
 
             //iş kodları, Yetki kontorlü
-            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.CategoryListed);
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll().OrderBy(p=>p.CategoryId).ToList(), Messages.CategoryListed);
         }
 
         public IDataResult<Category> GetById(int categoryId)
