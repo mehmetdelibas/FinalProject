@@ -28,8 +28,6 @@ namespace Business.Concrete
 
         public IDataResult<List<Category>> GetAll()
         {
-            if (DateTime.Now.Hour == 5)
-                return new ErrorDataResult<List<Category>>(Messages.MaintenanceTime);
 
             //iş kodları, Yetki kontorlü
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll().OrderBy(p=>p.CategoryId).ToList(), Messages.CategoryListed);
