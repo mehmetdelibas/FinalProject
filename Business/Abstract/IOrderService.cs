@@ -1,9 +1,11 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Result;
+using Entities.Concrete;
 
 namespace Business.Abstract
 {
     public interface IOrderService
     {
-        List<Order> GetAll();
+        IDataResult<List<Order>> GetAll();
+        IResult Add(Order order);
     }
 }

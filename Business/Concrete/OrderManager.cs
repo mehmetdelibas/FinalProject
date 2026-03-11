@@ -1,5 +1,10 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Result;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFreamwork;
 using Entities.Concrete;
 
 namespace Business.Concrete
@@ -8,14 +13,25 @@ namespace Business.Concrete
     {
         IOrderDal _orderDal;
 
-        public OrderManager(IOrderDal categoryDal)
+        public OrderManager(IOrderDal orderDal)
         {
-            _orderDal = categoryDal;
+            _orderDal = orderDal;
         }
 
-        public List<Order> GetAll()
+        public IResult Add(Order order)
         {
-            return _orderDal.GetAll();
+            ValidationTool.Validate(new OrderValidator(), order);
+            _orderDal.Add(order);
+            return new SuccessResult(Messages.OrderAdded);
+        }
+
+        public IDataResult<List<Order>> GetAll()
+        {
+            if (DateTime.Now.Hour == 22)
+                return new ErrorDataResult<List<Order>>(Messages.MaintenanceTime);
+
+            //iş kodları, Yetki kontorlü
+            return new SuccessDataResult<List<Order>>(_orderDal.GetAll().OrderBy(p => p.OrderID).ToList(), Messages.OrderListed);
         }
     }
 }
