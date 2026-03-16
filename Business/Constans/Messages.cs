@@ -1,4 +1,6 @@
-﻿namespace Business.Constans
+﻿using Core.Entities.Concrete;
+
+namespace Business.Constans
 {
     public static class Messages
     {
@@ -26,6 +28,13 @@
         public static string OrderAdded = "Sipariş Eklendi";
         public static string OrderNameInvalid = "Sipariş İsmi Geçersiz";
         public static string OrderListed = "Siparişler Listelendi";
-        
+        //yetki kontrolu
+        public static string AuthorizationDenied = "Yetkiniz Yok";
+        public static string UserRegistered = "Kullanici olusturuldu";
+        public static string UserNotFound = "Kullanici bulunamadi";
+        public static string PasswordError = "Şifre hatali";
+        public static string SuccessfulLogin = "Giris basarili";
+        public static string UserAlreadyExists = "Kullanici mevcut";
+        public static string AccessTokenCreated = "Giris tokeni olusturuldu";
     }
 }
