@@ -42,7 +42,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
 
         }
-
+        //last working code
         [CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
