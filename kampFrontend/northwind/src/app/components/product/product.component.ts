@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product';
+import { ProductResponseModel } from '../../models/productResponseModel';
+import { ProductService } from '../../services/product.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-product',
@@ -9,43 +12,20 @@ import { Product } from '../../models/product';
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
-export class ProductComponent {
-  product1: any = {
-    productId: 1,
-    productName: 'Bardak',
-    categoryId: 1,
-    unitPrice: 5,
-  };
-  product2: any = {
-    productId: 2,
-    productName: 'Laptop',
-    categoryId: 1,
-    unitPrice: 5,
-  };
-  product3: any = {
-    productId: 3,
-    productName: 'Tava',
-    categoryId: 1,
-    unitPrice: 5,
-  };
-  product4: any = {
-    productId: 4,
-    productName: 'Kutu',
-    categoryId: 1,
-    unitPrice: 5,
-  };
-  product5: any = {
-    productId: 5,
-    productName: 'Anahtar',
-    categoryId: 1,
-    unitPrice: 5,
-  };
+export class ProductComponent implements OnInit {
+  products: Product[] = [];
+  dataLoaded = false;
 
-  products: Product[] = [
-    this.product1,
-    this.product2,
-    this.product3,
-    this.product4,
-    this.product5,
-  ];
+  constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productService.getProducts().subscribe((response) => {
+      this.products = response.data;
+      this.dataLoaded = true;
+    });
+  }
 }
