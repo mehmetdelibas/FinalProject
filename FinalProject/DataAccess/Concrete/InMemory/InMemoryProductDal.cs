@@ -14,19 +14,19 @@ namespace DataAccess.Concrete.InMemory
             {
                 new Product{ProductId=1,CategoryId=1,
                     ProductName="Bardak",UnitPrice=15,
-                    UnitsInSTock=15},
+                    UnitsInStock=15},
                 new Product{ProductId=2,CategoryId=1,
                     ProductName="Kamera",UnitPrice=500,
-                    UnitsInSTock=3},
+                    UnitsInStock=3},
                 new Product{ProductId=3,CategoryId=2,
                     ProductName="Telefon",UnitPrice=1500,
-                    UnitsInSTock=2},
+                    UnitsInStock=2},
                 new Product{ProductId=4,CategoryId=2,
                     ProductName="Klavye",UnitPrice=150,
-                    UnitsInSTock=65},
+                    UnitsInStock=65},
                 new Product{ProductId=5,CategoryId=2,
                     ProductName="Fare",UnitPrice=85,
-                    UnitsInSTock=1}
+                    UnitsInStock=1}
             };
         }
 
@@ -79,7 +79,7 @@ namespace DataAccess.Concrete.InMemory
             productUpdate.ProductName = product.ProductName;
             productUpdate.CategoryId = product.CategoryId;
             productUpdate.UnitPrice = product.UnitPrice;
-            productUpdate.UnitsInSTock = product.UnitsInSTock;
+            productUpdate.UnitsInStock = product.UnitsInStock;
         }
     }
 }
