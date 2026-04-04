@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product';
-import { ProductResponseModel } from '../../models/productResponseModel';
 import { ProductService } from '../../services/product.service';
 import { response } from 'express';
 
