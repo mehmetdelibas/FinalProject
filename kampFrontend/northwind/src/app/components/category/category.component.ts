@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css',
 })
@@ -33,5 +34,17 @@ export class CategoryComponent implements OnInit {
     } else {
       return 'list-group-item';
     }
+  }
+
+  getAllCategoryClass() {
+    if (!this.currentCategory) {
+      return 'list-group-item active';
+    } else {
+      return 'list-group-item ';
+    }
+  }
+
+  clearCurrentCategory() {
+    this.currentCategory = undefined as any;
   }
 }

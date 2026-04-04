@@ -26,10 +26,10 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpGet("GetById,{id:int}")]
-        public IActionResult GetById(int id)
+        [HttpGet("GetByCategory")]
+        public IActionResult GetByCategory(int categoryId)
         {
-            var result = _productService.GetById(id);
+            var result = _productService.GetAllByCategoryId(categoryId);
             if (result.Success)
                 return Ok(result);
 
