@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product',
@@ -16,31 +17,31 @@ export class ProductComponent {
     unitPrice: 5,
   };
   product2: any = {
-    productId: 1,
+    productId: 2,
     productName: 'Laptop',
     categoryId: 1,
     unitPrice: 5,
   };
   product3: any = {
-    productId: 1,
+    productId: 3,
     productName: 'Tava',
     categoryId: 1,
     unitPrice: 5,
   };
   product4: any = {
-    productId: 1,
+    productId: 4,
     productName: 'Kutu',
     categoryId: 1,
     unitPrice: 5,
   };
   product5: any = {
-    productId: 1,
+    productId: 5,
     productName: 'Anahtar',
     categoryId: 1,
     unitPrice: 5,
   };
 
-  products = [
+  products: Product[] = [
     this.product1,
     this.product2,
     this.product3,
