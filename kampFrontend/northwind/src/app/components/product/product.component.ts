@@ -2,19 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
-import { response } from 'express';
 import { ActivatedRoute } from '@angular/router';
+import { VatAddedPipe } from '../../pipes/vat-added.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, VatAddedPipe, FormsModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
   dataLoaded = false;
+  filterText = '';
 
   constructor(
     private productService: ProductService,
