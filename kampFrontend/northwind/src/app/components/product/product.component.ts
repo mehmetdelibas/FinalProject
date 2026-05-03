@@ -7,6 +7,7 @@ import { VatAddedPipe } from '../../pipes/vat-added.pipe';
 import { FormsModule } from '@angular/forms';
 import { FilterPipePipe } from '../../pipes/filter-pipe.pipe';
 import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -24,6 +25,7 @@ export class ProductComponent implements OnInit {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
+    private cartService: CartService,
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +54,11 @@ export class ProductComponent implements OnInit {
       });
   }
   addToCart(product: Product) {
-    this.toastrService.success('Sepete eklendi', product.productName);
+    if (product.productId === 1) {
+      this.toastrService.error('Hata', 'Bu ürün sepete eklenemez');
+    } else {
+      this.toastrService.success('Sepete eklendi', product.productName);
+      this.cartService.addToCart(product);
+    }
   }
 }
