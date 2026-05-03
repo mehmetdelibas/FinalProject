@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Core.DataAccess.EntityFreamwork
 {
-    public class EfEntityRepositoryBase<TEntity, TContext>: IEntityRepository<TEntity>
+    public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
         where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
