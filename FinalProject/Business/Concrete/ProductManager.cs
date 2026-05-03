@@ -25,8 +25,8 @@ namespace Business.Concrete
             _categoryServices = categoryServices;
         }
 
-        [SecuredOperation("prduct.add,admin")]
-        [ValidationAspect(typeof(ProductValidator))]
+        //[SecuredOperation("prduct.add,admin")]
+        //[ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             // is kodlari
@@ -86,6 +86,19 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
+        public IResult Delete(int id)
+        {
+            var result = _productDal.Get(p => p.ProductId == id);
+            if (result == null)
+                return new ErrorResult("Silinecek ürün bulunamadı.");
+            else
+            {
+                _productDal.Delete(result);
+                return new SuccessResult("Ürün başarıyla silindi.");
+            }
+                
+        }
+
         private IResult CheckIfProductCountOfCategoryCorrect(int caregoryId)
         {
             var result = _productDal.GetAll(p => p.CategoryId == caregoryId).Count;
@@ -98,7 +111,7 @@ namespace Business.Concrete
         private IResult CheckIfProductNameExist(string productName)
         {
             var result = _productDal.GetAll(p => p.ProductName == productName).Any();
-            if (!result)
+            if (result)
             {
                 return new ErrorResult(Messages.ProductNameAlreadyExist);
             }
@@ -113,5 +126,7 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
+
+        
     }
 }
