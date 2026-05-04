@@ -26,7 +26,7 @@ namespace Business.Concrete
         }
 
         //[SecuredOperation("prduct.add,admin")]
-        //[ValidationAspect(typeof(ProductValidator))]
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             // is kodlari
